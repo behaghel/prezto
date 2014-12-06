@@ -47,3 +47,21 @@ fi
 
 alias tmuxa="tmux $_tmux_iterm_integration new-session -A"
 alias tmuxl='tmux list-sessions'
+
+#
+# Auto Rename Window
+#
+
+rename_tmux_window(){
+    if [[ -n "$TMUX" ]] && (
+      zstyle -t ':prezto:module:tmux' auto-rename \
+    ); then
+        # title = $PWD or ~ if $HOME, keep only last directory in the path
+        local title=${${PWD/$HOME/"~"}//*\//}
+        tmux rename-window $title
+    fi
+}
+rename_tmux_window
+
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd rename_tmux_window
