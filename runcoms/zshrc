@@ -13,3 +13,6 @@ fi
 # Customize to your needs...
 
 source "${ZDOTDIR:-$HOME}/.dotfiles/zshrc.hub"
+
+#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
+[[ -s "/Users/hbe07/.gvm/bin/gvm-init.sh" ]] && source "/Users/hbe07/.gvm/bin/gvm-init.sh"
